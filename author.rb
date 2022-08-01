@@ -1,5 +1,3 @@
-require 'pry'
-
 class Author
   attr_reader :id, :first_name, :last_name, :items
 
@@ -11,11 +9,6 @@ class Author
   end
 
   def add_item(item)
-    unless @items.include?(item)
-      @items << item
-      item.add_author(self)
-    end
+    (@items << item) && item.add_author(self) unless @items.include?(item)
   end
 end
-
-binding.pry
