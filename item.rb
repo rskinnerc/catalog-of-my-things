@@ -16,7 +16,7 @@ class Item
   private
 
   def can_be_archived?
-    (Date.today.year - publish_date.year) > 10 ? true : false    
+    (Date.today.year - publish_date.year) > 10
   end
 
 end
