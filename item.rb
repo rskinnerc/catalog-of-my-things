@@ -1,7 +1,7 @@
 require 'date'
 
 class Item
-  attr_reader :publish_date, :archived
+  attr_reader :publish_date, :archived, :id
 
   def initialize(publish_date)
     @publish_date = publish_date
@@ -13,10 +13,22 @@ class Item
     @archived = true if can_be_archived?
   end
 
+  def add_genre(genre)
+    @genre = genre
+  end
+
+  def add_label(label)
+    @label = label
+  end
+
+  def add_author(author)
+    @author = author
+  end
+
   private
 
   def can_be_archived?
-    (Date.today.year - publish_date.year) > 10
+    (Date.today - publish_date).to_i > (Date.today - Date.new(Date.today.year-10,Date.today.month,Date.today.day)).to_i
   end
 
 end

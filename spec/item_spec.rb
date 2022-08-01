@@ -5,7 +5,7 @@ require_relative '../item'
 describe Item do
   describe '#move_to_archive' do
     it "Set the item attr archived to true for items older than 10 years" do
-      date = Date.new(1987-02-02)
+      date = Date.new(2011,7,31)
 
       item = Item.new(date)
 
