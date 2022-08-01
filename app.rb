@@ -4,4 +4,8 @@ class App
   def initialize
     @status = 'Created'
   end
+
+  def exit_app
+    exit
+  end
 end
