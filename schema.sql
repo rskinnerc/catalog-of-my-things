@@ -1,0 +1,5 @@
+CREATE TABLE authors (
+  id INT GENERATED ALWAYS AS IDENTITY UNIQUE,
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
+)
