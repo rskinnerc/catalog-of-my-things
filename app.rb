@@ -8,7 +8,6 @@ require_relative './music_album'
 class App
   attr_reader :status
 
-class App
   def initialize
     @games = []
     @authors = []
@@ -49,7 +48,7 @@ class App
   def exit_app
     exit
   end
-  
+
   def list_games
     if @games.empty?
       puts 'There are no games.'

@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
 require './app'
 
-def main
-  options = [
+OPTIONS = [
   { id: 1, name: '1 - ', action: 'add_music_album' },
   { id: 2, name: '2 - ', action: 'list_all_music_albums' },
   { id: 3, name: '3 - ', action: 'list_all_genres' },
