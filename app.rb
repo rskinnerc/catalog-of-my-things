@@ -25,7 +25,9 @@ class App
     if @books.empty?
       puts 'There are no books.'
     else
-      @books.each { |book| puts "ID: #{book.id} - Publisher: \"#{book.publisher}\" - Cover State: #{book.cover_state} " }
+      @books.each do |book|
+        puts "ID: #{book.id} - Publisher: \"#{book.publisher}\" - Cover State: #{book.cover_state} "
+      end
     end
     puts ''
   end
