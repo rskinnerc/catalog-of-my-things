@@ -28,7 +28,6 @@ class Item
   private
 
   def can_be_archived?
-    (Date.today - publish_date).to_i > (Date.today - Date.new(Date.today.year - 10, Date.today.month,
-                                                              Date.today.day)).to_i
+    (Date.today << 120 <=> @publish_date).positive?
   end
 end
