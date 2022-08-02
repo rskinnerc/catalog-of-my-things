@@ -2,15 +2,15 @@
 require './app'
 
 OPTIONS = [
-  { id: 1, name: '1 - ', action: '' },
+  { id: 1, name: '1 - List all books', action: 'list_books' },
   { id: 2, name: '2 - ', action: '' },
   { id: 3, name: '3 - ', action: '' },
   { id: 4, name: '4 - List of games', action: 'list_games' },
   { id: 5, name: '5 - ', action: '' },
-  { id: 6, name: '6 - ', action: '' },
+  { id: 6, name: '6 - List all labels', action: 'list_labels' },
   { id: 7, name: '7 - List all authors', action: 'list_authors' },
   { id: 8, name: '8 - ', action: '' },
-  { id: 9, name: '9 - ', action: '' },
+  { id: 9, name: '9 - Add a book', action: 'add_book' },
   { id: 10, name: '10 - ', action: '' },
   { id: 11, name: '11 - ', action: '' },
   { id: 12, name: '12 - Add a game', action: 'add_game' },
