@@ -13,7 +13,7 @@ OPTIONS = [
   { id: 9, name: '9 - ', action: '' },
   { id: 10, name: '10 - ', action: '' },
   { id: 11, name: '11 - ', action: '' },
-  { id: 12, name: '12 - Add a game', action: 'add_game'},
+  { id: 12, name: '12 - Add a game', action: 'add_game' },
   { id: 13, name: '13 - Exit', action: 'exit_app' }
 ].freeze
 
