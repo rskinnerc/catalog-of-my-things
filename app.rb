@@ -17,18 +17,18 @@ class App
     print 'Is this song available in Spotify [y/n]: '
     on_spotify = gets.chomp.downcase
 
-    music = MusicAlbum.new(Date.today, on_spotify == 'y' ? true : false)
+    music = MusicAlbum.new(Date.today, on_spotify == 'y')
     genre = Genre.new(genre_name)
 
     music.add_genre(genre)
   end
 
   def list_all_genres
-    ObjectSpace.each_object(Genre) { |genre| puts "#{genre.name}" }
+    ObjectSpace.each_object(Genre) { |genre| puts genre.name }
   end
 
   def list_all_music_albums
-    ObjectSpace.each_object(MusicAlbum) { |music_album| puts "#{music_album}" }
+    ObjectSpace.each_object(MusicAlbum) { |music_album| puts music_album }
   end
 
   def action(choice, options)
