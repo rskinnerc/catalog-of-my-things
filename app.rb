@@ -1,7 +1,10 @@
 require './game'
+require './book'
 
 class App
   def initialize
+    @books = []
+    @labels = []
     @games = []
     @authors = []
     puts 'Welcome to the Catalog of my Things App!'
