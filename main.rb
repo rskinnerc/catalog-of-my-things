@@ -2,9 +2,9 @@
 require './app'
 
 OPTIONS = [
-  { id: 1, name: '1 - ', action: 'add_music_album' },
-  { id: 2, name: '2 - ', action: 'list_all_music_albums' },
-  { id: 3, name: '3 - ', action: 'list_all_genres' },
+  { id: 1, name: '1 - add music album', action: 'add_music_album' },
+  { id: 2, name: '2 - list all music albums', action: 'list_all_music_albums' },
+  { id: 3, name: '3 - list all genres', action: 'list_all_genres' },
   { id: 4, name: '4 - List of games', action: 'list_games' },
   { id: 5, name: '5 - ', action: '' },
   { id: 6, name: '6 - ', action: '' },

@@ -6,8 +6,6 @@ require_relative './genre'
 require_relative './music_album'
 
 class App
-  attr_reader :status
-
   def initialize
     @games = []
     @authors = []
