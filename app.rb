@@ -1,5 +1,10 @@
+require 'date'
+require 'objspace'
+
 require './game'
 require './book'
+require_relative './genre'
+require_relative './music_album'
 
 class App
   def initialize
@@ -9,6 +14,26 @@ class App
     @authors = []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
+  end
+
+  def add_music_album
+    print 'Song Genre: '
+    genre_name = gets.chomp
+    print 'Is this song available in Spotify [y/n]: '
+    on_spotify = gets.chomp.downcase
+
+    music = MusicAlbum.new(Date.today, on_spotify == 'y')
+    genre = Genre.new(genre_name)
+
+    music.add_genre(genre)
+  end
+
+  def list_all_genres
+    ObjectSpace.each_object(Genre) { |genre| puts genre.name }
+  end
+
+  def list_all_music_albums
+    ObjectSpace.each_object(MusicAlbum) { |music_album| puts music_album }
   end
 
   def action(choice, options)
