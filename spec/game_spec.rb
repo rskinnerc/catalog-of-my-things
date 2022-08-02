@@ -2,7 +2,7 @@ require_relative '../game'
 
 describe Game do
   describe '#move_to_archive' do
-    it 'sets a game as archived when its older than 10 years (parent check) and it was last played more than 2 years ago' do
+    it 'sets a game as archived when its older than 10 years and was last played more than 2 years ago' do
       publish_date = Date.new(2010, 2, 2)
       last_played_at = Date.today << 25
       my_game = Game.new(publish_date, last_played_at)
