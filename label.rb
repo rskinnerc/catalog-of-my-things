@@ -3,8 +3,8 @@ require_relative './item'
 class Label
   attr_accessor :items, :color, :title
 
-  def initialize(id, title, color)
-    @id = id
+  def initialize(title, color)
+    @id = rand(500)
     @title = title
     @color = color
     @items = []
