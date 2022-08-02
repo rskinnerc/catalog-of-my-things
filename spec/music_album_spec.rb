@@ -25,7 +25,7 @@ describe MusicAlbum do
     end
 
     it "Don't set as archived when not older than 10 years AND on_spotify is true" do
-      p date = Date.today << 118
+      date = Date.today << 118
       on_spotify = true
       music_album = MusicAlbum.new(date, on_spotify)
 
