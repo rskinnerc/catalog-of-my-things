@@ -2,14 +2,11 @@ require 'date'
 require 'objspace'
 
 require './game'
-require './book'
 require_relative './genre'
 require_relative './music_album'
 
 class App
   def initialize
-    @books = []
-    @labels = []
     @games = []
     @authors = []
     puts 'Welcome to the Catalog of my Things App!'
@@ -46,37 +43,8 @@ class App
     end
   end
 
-  def list_books
-    if @books.empty?
-      puts 'There are no books.'
-    else
-      @books.each do |book|
-        puts "ID: #{book.id} - Publisher: \"#{book.publisher}\" - Cover State: #{book.cover_state} "
-      end
-    end
-    puts ''
-  end
-
-  def list_labels
-    if @labels.empty?
-      puts 'There are no labels.'
-    else
-      @labels.each { |label| puts "ID: #{label.id} - Title: \"#{label.title}\" - Color: #{label.color} " }
-    end
-    puts ''
-  end
-
-  def add_book
-    puts 'Please enter the book information'
-    print 'Publish Date (YYYY-MM-DD): '
-    publish_date = gets.chomp
-    print 'Publisher '
-    publisher = gets.chomp
-    print 'Cover state (good/bad): '
-    cover_state = gets.chomp.downcase
-    @books << Book.new(publish_date, publisher, cover_state)
-    puts 'Book added successfully.'
-    puts ''
+  def exit_app
+    exit
   end
 
   def list_games
