@@ -46,5 +46,4 @@ CREATE TABLE music_albums(
 CREATE TABLE genres(
   id INT PRIMARY KEY,
   name varchar(50),
-  CONSTRAINT fk_item_id FOREIGN KEY (id) REFERENCES music_albums(id)
 )
