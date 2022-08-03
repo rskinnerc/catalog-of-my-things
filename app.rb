@@ -1,5 +1,6 @@
 require 'date'
 require 'objspace'
+require 'json'
 
 require './game'
 require './book'
@@ -16,6 +17,56 @@ class App
     @music_albums = []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
+  end
+# File managment
+  def save
+    save_genres
+    save_music_albums
+  end
+
+  def load_data
+    load_genres
+    load_music_albums
+  end
+
+  def init_file(file)
+    File.exist?(file) ? File.open(file) : File.new(file, 'w+')
+  end
+# loads each object from an (array of json objects) into an array
+  def load_items(json, destination_array)
+    return if json == ''
+    arr = JSON.parse(json, create_additions: true)
+    arr.each { |item| destination_array << JSON.parse(item, create_additions: true) }
+  end
+
+  def load_genres
+    file = init_file('genre.json')
+
+    json = file.read
+    load_items(json, @genres)
+
+    file.close
+  end
+
+  def load_music_albums
+    file = init_file('music_albums.json')
+
+    json = file.read
+    load_items(json, @music_albums)
+
+    file.close
+  end
+
+  def save_genres
+    genre_array = []
+    @genres.each { |genre| genre_array << JSON.generate(genre) }
+    File.write('genre.json', genre_array)
+  end
+
+  def save_music_albums
+    music_albums_array = []
+    @music_albums.each { |album| music_albums_array << JSON.generate(album) }
+    File.write('music_albums.json', music_albums_array)
   end
 
   def add_music_album
@@ -36,7 +87,7 @@ class App
   end
 
   def list_all_music_albums
-    @music_albums.each { |music| print "\nAlmbum ID: ", music.id}
+    @music_albums.each { |music| print "Almbum ID: #{music.id}\n" }
   end
 
   def action(choice, options)

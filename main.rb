@@ -16,6 +16,7 @@ OPTIONS = [
 
 def main(options)
   app = App.new
+  app.load_data
   exit = 0
   while exit.zero?
     puts 'Please choose an option by entering a number:'
@@ -23,6 +24,7 @@ def main(options)
     choice = gets.chomp.to_i
     choice == 10 ? exit = 1 : app.action(choice, options)
   end
+  app.save
 end
 
 main(OPTIONS)
