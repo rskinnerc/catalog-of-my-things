@@ -73,12 +73,14 @@ class App
   end
 
   def add_music_album
-    print 'Song Genre: '
+    print 'Publish Date (YYYY-MM-DD): '
+    publish_date = gets.chomp
+    print 'Album Genre: '
     genre_name = gets.chomp
     print 'Is this song available in Spotify [y/n]: '
     on_spotify = gets.chomp.downcase
 
-    music = MusicAlbum.new(Date.today, on_spotify == 'y')
+    music = MusicAlbum.new(Date.parse(publish_date), on_spotify == 'y')
     genre = Genre.new(genre_name)
 
     music.add_genre(genre)
