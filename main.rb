@@ -23,6 +23,7 @@ def main(options)
     choice = gets.chomp.to_i
     choice == 10 ? exit = 1 : app.action(choice, options)
   end
+  app.save_resources
 end
 
 main(OPTIONS)
