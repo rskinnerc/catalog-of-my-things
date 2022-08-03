@@ -1,5 +1,5 @@
 class Genre
-  attr_reader :items, :name
+  attr_reader :items, :name, :id
 
   def initialize(name)
     @id = rand(500)
