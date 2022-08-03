@@ -12,8 +12,8 @@ class Game < Item
 
   def to_json(*args)
     {
-      JSON.create_id  => self.class.name,
-      'a'             => [ id, publish_date, last_played_at, multiplayer, archived, genre&.id, label&.id, author&.id ]
+      JSON.create_id => self.class.name,
+      'a' => [id, publish_date, last_played_at, multiplayer, archived, genre&.id, label&.id, author&.id]
     }.to_json(*args)
   end
 

@@ -8,10 +8,10 @@ require_relative './music_album'
 
 class App
   def initialize
-    @books = []
     @labels = []
     @authors = File.exist?('./authors.json') ? load_resource('authors') : []
-    @games = File.exist?('./games.json') ? set_relations(load_resource('games')) : []
+    @books = []
+    @games = File.exist?('./games.json') ? load_relations(load_resource('games')) : []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
   end
@@ -114,7 +114,10 @@ class App
     JSON.parse(File.read("#{resource}.json"), create_additions: true)
   end
 
-  def set_relations(resources)
-
+  def load_relations(items)
+    items.each do |item|
+      item.add_author = @authors.find(proc { null }) { |author| author.id == item.author_id } unless item.author.nil?
+    end
+    items
   end
 end

@@ -14,8 +14,8 @@ class Author
 
   def to_json(*args)
     {
-      JSON.create_id  => self.class.name,
-      'a'             => [ id, first_name, last_name, items ]
+      JSON.create_id => self.class.name,
+      'a' => [id, first_name, last_name, items]
     }.to_json(*args)
   end
 
