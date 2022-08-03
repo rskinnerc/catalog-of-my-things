@@ -82,30 +82,25 @@ class App
     print 'Cover state (good/bad): '
     cover_state = gets.chomp.downcase
     @books << Book.new(publish_date, publisher, cover_state)
-    puts 'Book added successfully.'
-    puts ''
+    puts "Book added successfully.\n"
   end
 
   def list_games
-    puts ''
-    puts '╭─✧─≫   List of Games  ≪─✧─╮'
+    puts "\n╭─✧─≫   List of Games  ≪─✧─╮\n"
     if @games.empty?
-      puts 'There are no games.'
+      puts "There are no games.\n"
     else
       @games.each { |game| puts "Game with ID #{game.id}" }
     end
-    puts ''
   end
 
   def list_authors
-    puts ''
-    puts '╭─✧─≫   List of Authors  ≪─✧─╮'
+    puts "\n╭─✧─≫   List of Authors  ≪─✧─╮\n"
     if @authors.empty?
-      puts 'There are no authors.'
+      puts "There are no authors.\n"
     else
       @authors.each { |author| puts "Author with ID #{author.id}" }
     end
-    puts ''
   end
 
   def add_game
@@ -117,8 +112,7 @@ class App
     print 'Last played at (YYYY-MM-DD): '
     last_played_at = gets.chomp
     @games << Game.new(publish_date, last_played_at, multiplayer: multiplayer)
-    puts 'Game added successfully.'
-    puts ''
+    puts "Game added successfully.\n"
   end
 
   def load_resource(resource)
