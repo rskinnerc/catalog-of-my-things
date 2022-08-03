@@ -1,15 +1,14 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Catalog of my things
 
-> Description the project.
+> A console app that will help you to keep a record of different types of things you own: books, music albums, movies, and games.
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Ruby
+- Rspec
 
 ## Live Demo (if available)
 
@@ -18,39 +17,42 @@
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+To get a local copy follow these simple example steps.  
 
+1.- Open the terminal window and clone the repository using this command:  
+`git clone https://github.com/rskinnerc/catalog-of-my-things.git` 
 
-To get a local copy up and running follow these simple example steps.
+2.- Change the directory to the school-library directory  
+`cd catalog-of-my-things`  
 
-### Prerequisites
+3.- Install the project's dependencies by running this command:   
+`bundle install` 
 
-### Setup
+4.- Run the program using this command:  
+`ruby ./main.rb`  
 
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+5.- Run Rspec tests:  
+`rspec`  
 
 ## Authors
 
-👤 **Author1**
+👤 **Hector Torres**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@HectorTorres](https://github.com/HectorTorresE)
+- Twitter: [@HectorT](https://twitter.com/HectorT00406915)
+- LinkedIn: [@Hectorjte](https://www.linkedin.com/in/hectorjte/)
 
-👤 **Author2**
+👤 **Ronald Skinner**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@rskinnerc](https://github.com/rskinnerc)
+- Twitter: [@XSkinner](https://twitter.com/XSkinner)
+- LinkedIn: [Ronald Skinner Cardenas](https://www.linkedin.com/in/rskinnerc/)
+
+👤 **Wander Gonzalez**
+
+- GitHub: [@wandergithub](https://github.com/wandergithub)
+- Twitter: [@wanderklk1](https://twitter.com/wanderklk1)
+- LinkedIn: [Wander A. Gonzalez](https://www.linkedin.com/in/wander-a-gonzalez-53127b205/)
 
 ## 🤝 Contributing
 
