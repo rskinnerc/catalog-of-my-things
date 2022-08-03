@@ -18,7 +18,8 @@ class App
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
   end
-# File managment
+
+  # File managment
   def save
     save_genres
     save_music_albums
@@ -32,9 +33,11 @@ class App
   def init_file(file)
     File.exist?(file) ? File.open(file) : File.new(file, 'w+')
   end
-# loads each object from an (array of json objects) into an array
+
+  # loads each object from an (array of json objects) into an array
   def load_items(json, destination_array)
     return if json == ''
+
     arr = JSON.parse(json, create_additions: true)
     arr.each { |item| destination_array << JSON.parse(item, create_additions: true) }
   end
@@ -79,7 +82,8 @@ class App
     genre = Genre.new(genre_name)
 
     music.add_genre(genre)
-    (@genres << genre) && @music_albums << music
+    @genres << genre
+    @music_albums << music
   end
 
   def list_all_genres
