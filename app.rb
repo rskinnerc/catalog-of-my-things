@@ -8,10 +8,10 @@ require './genre'
 require './music_album'
 class App
   def initialize
-    @labels = []
     @genres = []
+    @labels = File.exist?('./resources/labels.json') ? load_resource('labels') : []
     @authors = File.exist?('./resources/authors.json') ? load_resource('authors') : []
-    @books = []
+    @books = File.exist?('./resources/books.json') ? load_resource('books') : []
     @games = File.exist?('./resources/games.json') ? load_relations(load_resource('games')) : []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
@@ -122,6 +122,7 @@ class App
   def load_relations(items)
     items.each do |item|
       item.add_author(@authors.find { |author| author.id == item.author }) unless item.author.nil?
+      item.add_label(@labels.find { |label| label.id == item.label }) unless item.label.nil?
     end
     items
   end
@@ -129,5 +130,6 @@ class App
   def save_resources
     File.write('./resources/authors.json', JSON.generate(@authors))
     File.write('./resources/games.json', JSON.generate(@games))
+    File.write('./resources/books.json', JSON.generate(@books))
   end
 end
