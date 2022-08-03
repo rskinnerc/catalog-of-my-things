@@ -1,75 +1,22 @@
 require 'date'
 require 'objspace'
 require 'json'
-
 require './game'
+require './author'
+require './label'
 require './book'
-require_relative './genre'
-require_relative './music_album'
+require './genre'
+require './music_album'
 
 class App
   def initialize
-    @books = []
     @labels = []
-    @games = []
-    @authors = []
-    @genres = []
-    @music_albums = []
-    puts 'Welcome to the Catalog of my Things App!'
-    puts ''
-  end
-
-  # File managment
-  def save
-    save_genres
-    save_music_albums
-  end
-
-  def load_data
-    load_genres
-    load_music_albums
-  end
-
-  def init_file(file)
-    File.exist?(file) ? File.open(file) : File.new(file, 'w+')
-  end
-
-  # loads each object from an (array of json objects) into an array
-  def load_items(json, destination_array)
-    return if json == ''
-
-    arr = JSON.parse(json, create_additions: true)
-    arr.each { |item| destination_array << JSON.parse(item, create_additions: true) }
-  end
-
-  def load_genres
-    file = init_file('genre.json')
-
-    json = file.read
-    load_items(json, @genres)
-
-    file.close
-  end
-
-  def load_music_albums
-    file = init_file('music_albums.json')
-
-    json = file.read
-    load_items(json, @music_albums)
-
-    file.close
-  end
-
-  def save_genres
-    genre_array = []
-    @genres.each { |genre| genre_array << JSON.generate(genre) }
-    File.write('genre.json', genre_array)
-  end
-
-  def save_music_albums
-    music_albums_array = []
-    @music_albums.each { |album| music_albums_array << JSON.generate(album) }
-    File.write('music_albums.json', music_albums_array)
+    @music_albums = File.exist?('./resources/music_albums.json') ? load_resource('music_albums') : []
+    @genres = File.exist?('./resources/genres.json') ? load_resource('genres') : []
+    @authors = File.exist?('./resources/authors.json') ? load_resource('authors') : []
+    @books = []
+    @games = File.exist?('./resources/games.json') ? load_relations(load_resource('games')) : []
+    puts "Welcome to the Catalog of my Things App!\n"
   end
 
   def add_music_album
@@ -140,6 +87,8 @@ class App
   end
 
   def list_games
+    puts ''
+    puts '╭─✧─≫   List of Games  ≪─✧─╮'
     if @games.empty?
       puts 'There are no games.'
     else
@@ -149,6 +98,8 @@ class App
   end
 
   def list_authors
+    puts ''
+    puts '╭─✧─≫   List of Authors  ≪─✧─╮'
     if @authors.empty?
       puts 'There are no authors.'
     else
@@ -168,5 +119,23 @@ class App
     @games << Game.new(publish_date, last_played_at, multiplayer: multiplayer)
     puts 'Game added successfully.'
     puts ''
+  end
+
+  def load_resource(resource)
+    JSON.parse(File.read("./resources/#{resource}.json"), create_additions: true)
+  end
+
+  def load_relations(items)
+    items.each do |item|
+      item.add_author(@authors.find { |author| author.id == item.author }) unless item.author.nil?
+    end
+    items
+  end
+
+  def save_resources
+    File.write('./resources/authors.json', JSON.generate(@authors))
+    File.write('./resources/games.json', JSON.generate(@games))
+    File.write('./resources/genres.json', JSON.generate(@genres))
+    File.write('./resources/music_albums.json', JSON.generate(@music_albums))
   end
 end
