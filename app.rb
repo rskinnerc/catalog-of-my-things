@@ -10,8 +10,8 @@ class App
   def initialize
     @books = []
     @labels = []
-    @games = []
-    @authors = []
+    @authors = File.exist?('./authors.json') ? load_resource('authors') : []
+    @games = File.exist?('./games.json') ? set_relations(load_resource('games')) : []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
   end
@@ -108,5 +108,13 @@ class App
     @games << Game.new(publish_date, last_played_at, multiplayer: multiplayer)
     puts 'Game added successfully.'
     puts ''
+  end
+
+  def load_resource(resource)
+    JSON.parse(File.read("#{resource}.json"), create_additions: true)
+  end
+
+  def set_relations(resources)
+
   end
 end
