@@ -11,7 +11,7 @@ class App
     @genres = []
     @labels = File.exist?('./resources/labels.json') ? load_resource('labels') : []
     @authors = File.exist?('./resources/authors.json') ? load_resource('authors') : []
-    @books = File.exist?('./resources/books.json') ? load_resource('books') : []
+    @books = File.exist?('./resources/books.json') ? load_relations(load_resource('books')) : []
     @games = File.exist?('./resources/games.json') ? load_relations(load_resource('games')) : []
     puts 'Welcome to the Catalog of my Things App!'
     puts ''
