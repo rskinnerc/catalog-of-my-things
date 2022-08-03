@@ -6,9 +6,7 @@ require './label'
 require './book'
 require './genre'
 require './music_album'
-require './helpers'
 class App
-  include Helpers
   def initialize
     @labels = []
     @genres = []
@@ -105,7 +103,6 @@ class App
   end
 
   def add_game
-    author, label, genre = ask_details('Game')
     puts 'Please enter the information for the game:'
     print 'Publish Date (YYYY-MM-DD): '
     publish_date = gets.chomp
@@ -113,11 +110,7 @@ class App
     multiplayer = gets.chomp.downcase == 'y'
     print 'Last played at (YYYY-MM-DD): '
     last_played_at = gets.chomp
-    game = Game.new(publish_date, last_played_at, multiplayer: multiplayer)
-    @games << game
-    author && game.add_author(author)
-    label && game.add_label(label)
-    genre && game.add_genre(genre)
+    @games << Game.new(publish_date, last_played_at, multiplayer: multiplayer)
     puts 'Game added successfully.'
     puts ''
   end
