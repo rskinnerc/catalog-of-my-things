@@ -11,6 +11,7 @@ require './music_album'
 class App
   def initialize
     @genres = File.exist?('./resources/genres.json') ? load_resource('genres') : []
+    @labels = File.exist?('./resources/labels.json') ? load_resource('labels') : []
     @music_albums = File.exist?('./resources/music_albums.json') ? load_resource('music_albums') : []
     @labels = File.exist?('./resources/labels.json') ? load_resource('labels') : []
     @authors = File.exist?('./resources/authors.json') ? load_resource('authors') : []
@@ -131,6 +132,7 @@ class App
   def save_resources
     File.write('./resources/authors.json', JSON.generate(@authors))
     File.write('./resources/games.json', JSON.generate(@games))
+    File.write('./resources/labels.json', JSON.generate(@labels))
     File.write('./resources/books.json', JSON.generate(@books))
     File.write('./resources/genres.json', JSON.generate(@genres))
     File.write('./resources/music_albums.json', JSON.generate(@music_albums))
