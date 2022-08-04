@@ -1,14 +1,17 @@
 require 'date'
 require 'objspace'
+require 'json'
 require './game'
 require './author'
 require './label'
 require './book'
 require './genre'
 require './music_album'
+
 class App
   def initialize
-    @genres = []
+    @genres = File.exist?('./resources/genres.json') ? load_resource('genres') : []
+    @music_albums = File.exist?('./resources/music_albums.json') ? load_resource('music_albums') : []
     @labels = File.exist?('./resources/labels.json') ? load_resource('labels') : []
     @authors = File.exist?('./resources/authors.json') ? load_resource('authors') : []
     @books = File.exist?('./resources/books.json') ? load_resource('books') : []
@@ -18,23 +21,27 @@ class App
   end
 
   def add_music_album
-    print 'Song Genre: '
+    print 'Publish Date (YYYY-MM-DD): '
+    publish_date = gets.chomp
+    print 'Album Genre: '
     genre_name = gets.chomp
     print 'Is this song available in Spotify [y/n]: '
     on_spotify = gets.chomp.downcase
 
-    music = MusicAlbum.new(Date.today, on_spotify == 'y')
+    music = MusicAlbum.new(Date.parse(publish_date), on_spotify == 'y')
     genre = Genre.new(genre_name)
 
     music.add_genre(genre)
+    @genres << genre
+    @music_albums << music
   end
 
   def list_all_genres
-    ObjectSpace.each_object(Genre) { |genre| puts genre.name }
+    @genres.each { |genre| print "#{genre.name}, Genre ID: #{genre.id}\n" }
   end
 
   def list_all_music_albums
-    ObjectSpace.each_object(MusicAlbum) { |music_album| puts music_album }
+    @music_albums.each { |music| print "Almbum ID: #{music.id}\n" }
   end
 
   def action(choice, options)
@@ -76,30 +83,25 @@ class App
     print 'Cover state (good/bad): '
     cover_state = gets.chomp.downcase
     @books << Book.new(publish_date, publisher, cover_state)
-    puts 'Book added successfully.'
-    puts ''
+    puts "Book added successfully.\n"
   end
 
   def list_games
-    puts ''
-    puts '╭─✧─≫   List of Games  ≪─✧─╮'
+    puts "\n╭─✧─≫   List of Games  ≪─✧─╮\n"
     if @games.empty?
-      puts 'There are no games.'
+      puts "There are no games.\n"
     else
       @games.each { |game| puts "Game with ID #{game.id}" }
     end
-    puts ''
   end
 
   def list_authors
-    puts ''
-    puts '╭─✧─≫   List of Authors  ≪─✧─╮'
+    puts "\n╭─✧─≫   List of Authors  ≪─✧─╮\n"
     if @authors.empty?
-      puts 'There are no authors.'
+      puts "There are no authors.\n"
     else
       @authors.each { |author| puts "Author with ID #{author.id}" }
     end
-    puts ''
   end
 
   def add_game
@@ -111,8 +113,7 @@ class App
     print 'Last played at (YYYY-MM-DD): '
     last_played_at = gets.chomp
     @games << Game.new(publish_date, last_played_at, multiplayer: multiplayer)
-    puts 'Game added successfully.'
-    puts ''
+    puts "Game added successfully.\n"
   end
 
   def load_resource(resource)
@@ -131,5 +132,7 @@ class App
     File.write('./resources/authors.json', JSON.generate(@authors))
     File.write('./resources/games.json', JSON.generate(@games))
     File.write('./resources/books.json', JSON.generate(@books))
+    File.write('./resources/genres.json', JSON.generate(@genres))
+    File.write('./resources/music_albums.json', JSON.generate(@music_albums))
   end
 end
